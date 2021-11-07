@@ -1,0 +1,77 @@
+/****************************************************************************************
+ *
+ *  AUTHOR : Nader Atef Labib
+ *
+ * file name: control_ecu.h
+ * file type: header file
+ * PROJECT description: door lock security system it consists of 2 microcontrollers
+ * (HMI and CONTROL UNIT) which communicate together with UART
+ *
+ * This is the header file for the control unit
+ *
+ *
+ *
+ *
+ ***************************************************************************************/
+
+#ifndef CONTROL_ECU_H_
+#define CONTROL_ECU_H_
+
+/****************************************************************************************
+
+   	   	   	   	   	   Macro definition
+
+ ***************************************************************************************/
+
+
+
+
+#define HAND_SHAKE 0x50
+#define CHANGE_PASSWORD 0x72
+
+#define THEIF_ALARM 0x20
+#define CHECK_PASSWORD 0x82
+#define CHECK_FIRST_TIME 0x12
+#define OPEN_DOOR  0x30
+#define FATAL_ERROR 0x51
+
+#define LOW_ADDRESS 56
+#define START_UP_ADDRESS 64
+#define START_UP_CHECK 111
+
+
+
+/*MODE_OPENING_DOOR is a macro for choosing timer0 to calculate 15 seconds*/
+#define MODE_OPENING_DOOR 0
+
+/*MODE_OPENING_DOOR is a macro for choosing timer0 to calculate 60 seconds*/
+#define  MODE_ALARM 1
+
+/*MODE_OPENING_DOOR is a macro for choosing timer0 to calculate 3 seconds*/
+#define MODE_MOTOR_REST 2
+
+
+
+/****************************************************************************************
+
+   	   	   	   	   	  Functions Prototypes
+
+ ***************************************************************************************/
+void timer_stopmotor();
+void alarm_callback();
+void init_timer(uint8 );
+void drivers_init();
+void timer0_processing();
+void Change_Password();
+void Check_Password();
+uint8 check_first_time();
+void open_door();
+void theif_function();
+uint8 recieve_function();
+
+
+
+
+
+
+#endif /* CONTROL_ECU_H_ */
